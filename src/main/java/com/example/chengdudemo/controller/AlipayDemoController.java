@@ -37,6 +37,11 @@ public class AlipayDemoController {
         return miniManager.offLine();
     }
 
+    @RequestMapping(value = "/online", method = RequestMethod.GET)
+    public String online(HttpServletRequest servletRequest) {
+        return miniManager.online();
+    }
+
     @RequestMapping(value = "/query", method = RequestMethod.GET)
     public String query(HttpServletRequest servletRequest) {
         return miniManager.query();

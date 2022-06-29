@@ -52,7 +52,7 @@ public class MiniManagerImpl implements MiniManager {
         request.setAutoOnline("true");
         try {
             AlipayOpenMiniVersionAuditApplyResponse response = alipayClient
-                    .execute(request, null, "202206BBaa01292e23e744d280df1433712baX48");
+                    .execute(request, null, alipayConfig.getAuthToken());
             return response.getSubMsg();
         } catch (Exception e) {
             return e.getMessage();
@@ -73,7 +73,7 @@ public class MiniManagerImpl implements MiniManager {
                 + "\"bundle_id\":\"com.alipay.alipaywallet\"" + "  }");
         try {
             AlipayOpenMiniVersionUploadResponse response = alipayClient
-                    .execute(request, null, "202206BBaa01292e23e744d280df1433712baX48");
+                    .execute(request, null, alipayConfig.getAuthToken());
             return response.getSubMsg();
         } catch (Exception e) {
             return e.getMessage();
@@ -91,7 +91,7 @@ public class MiniManagerImpl implements MiniManager {
                 + "  }");
         try {
             AlipayOpenMiniVersionOfflineResponse response = alipayClient
-                    .execute(request, null, "202206BBaa01292e23e744d280df1433712baX48");
+                    .execute(request, null, alipayConfig.getAuthToken());
             return response.getSubMsg();
         } catch (Exception e) {
             return e.getMessage();
@@ -107,8 +107,24 @@ public class MiniManagerImpl implements MiniManager {
                                + "  }");
         try {
             AlipayOpenMiniVersionDetailQueryResponse response = alipayClient
-                    .execute(request, null, "202206BBaa01292e23e744d280df1433712baX48");
+                    .execute(request, null, alipayConfig.getAuthToken());
             return response.getStatus();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    @Override
+    public String online() {
+        AlipayClient alipayClient = alipayConfig.getAlipayClient();
+
+        AlipayOpenMiniVersionOnlineRequest request = new AlipayOpenMiniVersionOnlineRequest();
+        request.setBizContent( "{" + "\"app_version\":\"1.1.6\"," + "\"bundle_id\":\"com.alipay.alipaywallet\""
+                               + "  }");
+        try {
+            AlipayOpenMiniVersionOnlineResponse response = alipayClient
+                    .execute(request, null, alipayConfig.getAuthToken());
+            return response.getCode();
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -124,7 +140,7 @@ public class MiniManagerImpl implements MiniManager {
                 + "  \"describe\":\"我是一个实例化小程序二维码\"," + "}");
         try {
             AlipayOpenAppQrcodeCreateResponse response = alipayClient
-                    .execute(request, null, "202206BBaa01292e23e744d280df1433712baX48");
+                    .execute(request, null, alipayConfig.getAuthToken());
             return response.getQrCodeUrlCircleBlue();
         } catch (Exception e) {
             return e.getMessage();

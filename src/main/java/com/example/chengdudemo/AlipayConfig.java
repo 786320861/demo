@@ -64,11 +64,25 @@ public class AlipayConfig {
     private String charset;
 
     /**
+     * 字符编码
+     */
+    @Value("${alipay.authToken}")
+    public String authToken;
+
+    /**
      * 通信协议
      */
     @Value("${alipay.protocol}")
     private String protocol;
 
+    /**
+     * Getter method for property <tt>authToken</tt>.
+     *
+     * @return property value of authToken
+     */
+    public String getAuthToken() {
+        return authToken;
+    }
 
     public AlipayClient getAlipayClient() {
         if (alipayClient == null) {

@@ -17,5 +17,7 @@ public interface MiniManager {
 
     String query();
 
+    String online();
+
     String qrCode();
 }

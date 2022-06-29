@@ -9,3 +9,4 @@ alipay:
   format: "json"
   charset: "GBK"
   gatewayHost: "https://openapi.alipay.com/gateway.do"
+  authToken: ""
