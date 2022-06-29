@@ -108,7 +108,7 @@ public class MiniManagerImpl implements MiniManager {
         try {
             AlipayOpenMiniVersionDetailQueryResponse response = alipayClient
                     .execute(request, null, alipayConfig.getAuthToken());
-            return response.getStatus();
+            return response.getAppVersion() + ":" + response.getStatus();
         } catch (Exception e) {
             return e.getMessage();
         }
